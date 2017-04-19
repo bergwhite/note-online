@@ -1,0 +1,29 @@
+{
+  "name": "bergnote",
+  "version": "1.0.0",
+  "description": "离线笔记",
+  "main": "no",
+  "scripts": {
+    "build": "gulp build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bergwhite/js-demo.git"
+  },
+  "keywords": [
+    "bergnote",
+    "berg",
+    "note"
+  ],
+  "author": "berg",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.22.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-less": "^3.1.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.0.0"
+  }
+}

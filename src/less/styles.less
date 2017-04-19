@@ -1,0 +1,69 @@
+*::selection {
+	background-color: gray;
+}
+body {
+	overflow-y: scroll;
+}
+.clear {
+	overflow: hidden;
+}
+.clear-left > li {
+	float: left;
+}
+.clear-right > li {
+	float: right;
+}
+.note-login,.note-logined {
+	margin-top: 20px;
+}
+.note-logined {
+	display: none;
+}
+.note-name {
+	transition:all 3s;
+	&:hover {
+		transform: rotateX(180deg);
+	}
+}
+.notes {
+	.note {
+		margin-top: 20px;
+		transition:all .5s;
+		&:hover {
+			cursor: pointer;
+			box-shadow: 5px 10px 5px gray;
+		}
+		&:hover .note-control {
+			display: block;
+		}
+		.note-title {
+			background-color: #009688;
+			color: white;
+			margin: 0;
+			position: relative;
+			&>p {
+				margin-bottom: 0;
+			}
+		}
+		.note-content {
+			border: 1px solid #009688;
+			border-top: 0;
+		}
+		.note-title,.note-content {
+			padding: 15px;
+		}
+		.note-control {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			display: none;
+			&>span {
+				margin-left: 20px;
+			}
+		}
+	}
+}
+.footer {
+	margin: 0;
+	padding: 10px;
+}

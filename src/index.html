@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="title" content="Note">
+  <meta name="keywords" content="Note">
+  <meta name="description" content="基于前后端分离的笔记系统">
+  <meta name="author" content="bergwhite">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Note</title>
+</head>
+<body>
+
+  <!-- 导航 -->
+    
+  <div class="container">
+    <ul class="row nav nav-pills clear clear-right note-login">
+      <li role="presentation"><a href="#" data-toggle="modal" data-target="#modalLogin" id="login">登陆</a></li>
+      <li role="presentation"><a href="#" data-toggle="modal" data-target="#modalRegister" id="register">注册</a></li>
+    </ul>
+    <ul class="row nav nav-pills clear clear-right note-logined">
+      <li>
+        <a href="#" class="btn-default logout">注销</a>
+      </li> 
+      <li>
+        <a href="" class="btn-default user-name">用户</a></li>
+      <li role="presentation">
+        <a href="#" data-toggle="modal" data-target="#modalAdd" id="add" class="ctrl-add btn-primary">添加</a>
+      </li>
+    </ul>
+    <div class="row text-center note-brand">
+      <h1 class="col-lg-12 note-name">Note</h1>
+    </div>
+    <ul class="row nav nav-pills note-nav">
+      <li role="presentation" class="active"><a href="#">首页</a></li>
+    </ul>
+  </div>
+
+  <!-- 笔记 -->
+
+  <div class="container notes">
+    <p class="row note text-center">请稍等，精彩马上就来...</p>
+  </div>
+
+  <!-- 可复用的模拟弹窗 -->
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-center"></h4>
+        </div>
+        <div class="modal-body"></div>
+        <div class="modal-footer"></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/javascript.js"></script>
+</body>
+</html>
