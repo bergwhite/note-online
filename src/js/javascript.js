@@ -106,6 +106,7 @@
         title: `登陆`,
         body: `
           <form>
+                <p class="tip alert alert-warning">请输入登陆信息</p>
                 <div class="form-group">
                   <label for="user" class="control-label">账号</label>
                   <input type="text" class="form-control loginUser" id="user">
@@ -125,6 +126,7 @@
         title: `注册`,
         body: `
           <form>
+                <p class="tip alert alert-warning">请输入登陆信息</p>
                 <div class="form-group">
                   <label for="user" class="control-label">账号</label>
                   <input type="text" class="form-control registerUser" id="user">
@@ -148,6 +150,7 @@
         title: `添加`,
         body: `
           <form>
+            <p class="tip alert alert-warning">请输入笔记信息</p>
             <div class="form-group">
               <label for="title" class="control-label">标题</label>
               <input type="text" class="form-control addTitle" id="title">
@@ -186,6 +189,12 @@
         console.log(XMLHttp.responseText);
         var result = JSON.parse(XMLHttp.responseText);
         console.log(result)
+        if (result.registerState==='no') {
+          $('.tip').text('账号已存在')
+        }
+        if (result.loginState==='no') {
+          $('.tip').text('账号不存在或密码错误')
+        }
         if(result.registerState==='yes'||result.loginState==='yes'||result.loginState==='login...'||result.logoutState||result.deleteState==='yes'||result.addState==='yes'){
           location.reload();
         };
@@ -262,11 +271,26 @@
       let user = $('.registerUser'),
         pass1 = $('.registerPass1'),
         pass2 = $('.registerPass2'),
+        pass1Val = pass1.val(),
+        pass2Val = pass2.val(),
+        tip = $('.tip'),
         pass = null;
-      if(pass1.val()===pass2.val()){
+      if (user.val()==='') {
+        tip.text('请输入账号')
+      }
+      else if (pass1Val === '') {
+        tip.text('请输入密码')
+      }
+      else if (pass2Val === '') {
+        tip.text('请再次输入密码')
+      }
+      else if (pass1Val !== pass2Val) {
+        tip.text('两次输入的密码不一致')
+      }
+      else{
         let  data = {
         user:user.val(),
-        pass:pass1.val()
+        pass:pass1Val
         };
         let postData = '';
         for (let x in data) {
@@ -275,22 +299,29 @@
         console.log(postData)
         ajax('POST','./api/user/register.php',`user=${data.user}&pass=${data.pass}&mail=`);
       }
-      else {
-        pass2.addClass('alert alert-warning');
-      }
 
     };
     function login () {
       let user = $('.loginUser'),
-        pass = $('.loginPass');
+        pass = $('.loginPass'),
+        tip = $('.tip');
       let  data = {
       user:user.val(),
       pass:pass.val()
       };
-      // Debug: handle/login
-      console.log(`user:${data.user}`);
-      console.log(`pass:${data.pass}`);
-      ajax('POST','./api/user/login.php',`user=${data.user}&pass=${data.pass}`);
+      if (user.val()==='') {
+        tip.text('请输入账号')
+      }
+      else if (pass.val()==='') {
+        tip.text('请输入密码')
+      }
+      else {
+        // Debug: handle/login
+        console.log(`user:${data.user}`);
+        console.log(`pass:${data.pass}`);
+        ajax('POST','./api/user/login.php',`user=${data.user}&pass=${data.pass}`);
+      }
+      
 
     };
     function edit () {
@@ -323,7 +354,8 @@
         content = $('.addContent'),
         tag = $('.addTag'),
         date = new Date(),
-        dateTime = date.getTime();
+        dateTime = date.getTime(),
+        tip = $('.tip');
 
       let data = {
         title:title.val(),
@@ -331,7 +363,15 @@
         tag:tag.val(),
         date:'2017-03-11'  
       };
-      ajax('POST','./api/note/add.php',`title=${data.title}&content=${data.content}&tag=${data.tag}&date=${data.date}`);
+      if (data.title==='') {
+        tip.text('请输入标题')
+      }
+      else if (data.content==='') {
+        tip.text('请输入内容')
+      }
+      else {
+        ajax('POST','./api/note/add.php',`title=${data.title}&content=${data.content}&tag=${data.tag}&date=${data.date}`);
+      }
     };
     function del () {
       ajax('POST','./api/note/delete.php',`noteId=${id}`);
