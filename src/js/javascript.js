@@ -17,12 +17,14 @@
   (function () {
 
     const loginState = check().login();
+    const notes = $('.notes');
 
     // event listener
 
     // $( document ).on( events, selector, data, handler );        // jQuery 1.7+
 
     if (!loginState) {
+      notes.html('<p class="row note text-center">请先登陆吧（测试账号和密码都是admin）</p>')
       let login = $('#login'),
           loginId = login.attr('id'),
           loginTarget = login.attr('data-target').replace('#',''),
@@ -196,6 +198,9 @@
 
   function render (method,url,data) {
     let XMLHttp = new XMLHttpRequest();
+    let notes = $('.notes');
+    let template = '<p class="note text-center">加载中...</p>'
+    notes.append(template);
     XMLHttp.onreadystatechange = function () {
       if (XMLHttp.readyState === 4 && XMLHttp.status === 200) {
         console.log(XMLHttp.responseText);
@@ -232,7 +237,7 @@
           
         }
         else {
-          let template = '<p class="note text-center">没有发现笔记哦，请登陆 ^_^</p>'
+          let template = '<p class="note text-center">请先登陆吧（测试账号和密码都是admin）</p>'
           notes.append(template);
         }
         ;

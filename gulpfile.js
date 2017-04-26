@@ -43,12 +43,5 @@ gulp.task('copy-conn', () =>
     gulp.src('src/conn.php')
     .pipe(gulp.dest('dist'))
 );
-gulp.task('rename', () =>
-    gulp.src('./dist/*/*')
-    .pipe(rename(function(path){
-        path.basename += '.min'
-    }))
-    .pipe(gulp.dest('./dist'))
-);
 gulp.task('copy',['copy-index','copy-api','copy-conn'])
 gulp.task('build',['compile-css','compile-js','copy']);
